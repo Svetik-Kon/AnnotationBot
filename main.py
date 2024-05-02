@@ -29,7 +29,7 @@ b4 = KeyboardButton('/schedule')
 kb.add(b4).add(b2).insert(b1).insert(b3)
 
 
-
+"""API бота"""
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 dp.middleware.setup(LoggingMiddleware())
@@ -50,6 +50,7 @@ async def help_command(message: types.Message):
     await message.delete()
 
 
+"""Обработчик для команды /weather"""
 @dp.message_handler(commands=['weather'])
 async def send_weather(message: types.Message):
     observation = mgr.weather_at_place('Moscow,RU')
@@ -58,7 +59,8 @@ async def send_weather(message: types.Message):
     detailed_status = w.detailed_status
     await message.reply(f"Сейчас в Москве:\n{detailed_status}.\nТемпература: {temp}°C.")
 
-# Обработчик команды /course
+
+""" Обработчик команды /course"""
 @dp.message_handler(commands=['rate'])
 async def send_course(message: types.Message):
     usd_rate = get_currency_rate('USD')
@@ -70,6 +72,7 @@ async def send_course(message: types.Message):
     await message.answer(response_text, parse_mode=ParseMode.HTML)
 
 
+"""Обработчик для команды /shedule"""
 @dp.message_handler(commands='schedule')
 async def schedule_command(message: types.Message):
     today = datetime.datetime.today().weekday()  # current day of the week (0 - Monday, 6 - Sunday)
@@ -105,7 +108,7 @@ async def schedule_command(message: types.Message):
 
 
 
-# Функция для получения курса валют с сайта Центрального банка РФ
+""" Функция для получения курса валют с сайта Центрального банка РФ """
 def get_currency_rate(currency):
     url = f'https://www.cbr-xml-daily.ru/daily_json.js'
     response = requests.get(url)
