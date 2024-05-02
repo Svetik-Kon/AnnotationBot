@@ -1,0 +1,7 @@
+README.md
+setup.py
+AnnotationBot.egg-info/PKG-INFO
+AnnotationBot.egg-info/SOURCES.txt
+AnnotationBot.egg-info/dependency_links.txt
+AnnotationBot.egg-info/entry_points.txt
+AnnotationBot.egg-info/top_level.txt
